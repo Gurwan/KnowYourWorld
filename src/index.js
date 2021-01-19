@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  render(){
+    return(
+      <div>
+        <h1>Countries Game</h1>
+        <form>
+          <input type="text" placeholder="Entrer un pays"/>
+          <button>Confirmer</button>
+        </form>
+        <p>Pays en Afrique : 0/54</p>
+        <p>Pays en Amérique : 0/36</p>
+        <p>Pays en Asie : 0/47</p>
+        <p>Pays en Europe : 0/46</p>
+        <p>Pays en Océanie : 0/17</p>
+      </div>
+    );
+  }
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App/>, rootElement);
