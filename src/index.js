@@ -7,6 +7,11 @@ class App extends React.Component {
 
   state = {
     paysFound : [],
+    paysAfrique : [],
+    paysAmerique : [],
+    paysAsie : [],
+    paysEuropeen: ["France","Espagne"],
+    paysOceanie : [],
     newPays: '',
     compteurAfrique: 0,
     compteurAmerique: 0,
@@ -17,13 +22,18 @@ class App extends React.Component {
 
   hChange = (event) => {
     const v = event.currentTarget.value;
-    this.setState({newPays: v});
+    this.setState({newPays: v.charAt(0).toUpperCase()+v.slice(1)});
   }
 
   addCountry = (event) => {
     event.preventDefault();
-    const countries = this.state.paysFound.slice();
-    countries.push(this.state.newPays);
+    var countries = this.state.paysFound.slice();
+    var cE = this.state.compteurEurope;
+
+    if(this.state.paysEuropeen.includes(this.state.newPays) && !(this.state.paysFound.includes(this.state.newPays))){
+      countries.push(this.state.newPays);
+      this.setState({compteurEurope : cE+1});
+    } 
     this.setState({paysFound : countries});
   }
 
@@ -36,11 +46,11 @@ class App extends React.Component {
           <input value={this.state.newPays} onChange={this.hChange} type="text" placeholder="Entrer un pays"/>
           <button>Confirmer</button>
         </form>
-        <p>Pays en Afrique : {this.state.compteurAfrique}/54</p>
-        <p>Pays en Amérique : {this.state.compteurAmerique}/36</p>
-        <p>Pays en Asie : {this.state.compteurAsie}/47</p>
-        <p>Pays en Europe : {this.state.compteurEurope}/46</p>
-        <p>Pays en Océanie : {this.state.compteurOceanie}/17</p>
+        <p>Pays en Afrique : {this.state.compteurAfrique}/{this.state.paysAfrique.length}</p>
+        <p>Pays en Amérique : {this.state.compteurAmerique}/{this.state.paysAmerique.length}</p>
+        <p>Pays en Asie : {this.state.compteurAsie}/{this.state.paysAsie.length}</p>
+        <p>Pays en Europe : {this.state.compteurEurope}/{this.state.paysEuropeen.length}</p>
+        <p>Pays en Océanie : {this.state.compteurOceanie}/{this.state.paysOceanie.length}</p>
         <ul>{this.state.paysFound.map(m => (<li>{m}</li>))}</ul>
       </div>
     );
