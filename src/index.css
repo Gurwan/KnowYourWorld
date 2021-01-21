@@ -84,3 +84,8 @@ code {
   margin: auto;
   padding-bottom: 20px;
 }
+
+.chrono {
+  width: 50%;
+  margin: 10px auto;
+}

@@ -13,7 +13,7 @@ class App extends React.Component {
     paysFoundOc : [],
     paysAfrique : ["Afrique du Sud","Algérie","Angola","Bénin","Botswana","Burkina Faso","Burundi","Cameroun","Cap-Vert","République centrafricaine","Comores","République du Congo","République démocratique du Congo","Côte d'Ivoire","Djibouti","Égypte","Érythrée","Éthiopie","Eswatini","Gabon","Gambie","Ghana","Guinée","Guinée-Bissau","Guinée équatoriale","Kenya","Lesotho","Liberia","Libye","Madagascar","Malawi","Mali","Maroc","Maurice","Mauritanie","Mozambique","Namibie","Niger","Nigeria","Ouganda","Rwanda","Sao Tomé-et-Principe","Sénégal","Seychelles","Sierra Leone","Somalie","Soudan","Soudan du Sud","Tanzanie","Tchad","Togo","Tunisie","Zambie","Zimbabwe"],
     paysAmerique : ["Antigua-et-Barbuda","Argentine","Bahamas","Barbade","Belize","Bolivie","Brésil","Canada","Chili","Colombie","Costa Rica","Cuba","République dominicaine","Dominique","Équateur","États-Unis","Grenade","Guatemala","Guyana","Haïti","Honduras","Jamaïque","Mexique","Nicaragua","Panama","Paraguay","Pérou","Porto Rico","Saint-Christophe-et-Niévès","Sainte-Lucie","Saint-Vincent-et-les-Grenadines","Salvador","Suriname","Trinité-et-Tobago","Uruguay","Venezuela"],
-    paysAsie : ["Afghanistan","Arabie saoudite","Arménie","Azerbaïdjan","Bahreïn","Bangladesh","Bhoutan","Birmanie","Brunei","Cambodge","Chine","Corée du Nord","Corée du Sud","Émirats arabes unis","Géorgie","Inde","Indonésie","Irak","Iran","Israël","Japon","Jordanie","Kazakhstan","Kirghizistan","Koweït","Laos","Liban","Malaisie","Maldives","Mongolie","Népal","Oman","Ouzbékistan","Pakistan","Palestine","Philippines","Qatar","Russie","Singapour","Sri Lanka","Syrie","Taïwan","Tadjikistan","Thaïlande","Timor oriental","Turkménistan","Turquie","Viêtnam","Yémen"],
+    paysAsie : ["Afghanistan","Arabie saoudite","Arménie","Azerbaïdjan","Bahreïn","Bangladesh","Bhoutan","Birmanie","Brunei","Cambodge","Chine","Corée du Nord","Corée du Sud","Émirats arabes unis","Géorgie","Inde","Indonésie","Irak","Iran","Israël","Japon","Jordanie","Kazakhstan","Kirghizistan","Koweït","Laos","Liban","Malaisie","Maldives","Mongolie","Népal","Oman","Ouzbékistan","Pakistan","Palestine","Philippines","Qatar","Singapour","Sri Lanka","Syrie","Taïwan","Tadjikistan","Thaïlande","Timor oriental","Turkménistan","Turquie","Viêtnam","Yémen"],
     paysEuropeen: ["Albanie","Allemagne","Andorre","Autriche","Belgique","Biélorussie","Bosnie-Herzégovine","Bulgarie","Chypre","Croatie","Danemark","Espagne","Estonie","Finlande","France","Grèce","Hongrie","Irlande","Islande","Italie","Kosovo","Lettonie","Liechtenstein","Lituanie","Luxembourg","Macédoine du Nord","Malte","Moldavie","Monaco","Monténégro","Norvège","Pays-Bas","Pologne","Portugal","République tchèque","Roumanie","Royaume-Uni","Russie","Saint-Marin","Serbie","Slovaquie","Slovénie","Suède","Suisse","Ukraine","Vatican"],
     paysOceanie : ["Australie","Fidji","Kiribati","Îles Cook","Îles Mariannes du Nord","Îles Marshall","États fédérés de Micronésie","Nauru","Niue","Nouvelle-Zélande","Palaos","Papouasie-Nouvelle-Guinée","Salomon","Samoa","Tonga","Tuvalu","Vanuatu"],
     newPays: '',
@@ -22,7 +22,14 @@ class App extends React.Component {
     compteurAsie: 0,
     compteurEurope: 0,
     compteurOceanie: 0,
-    compteurTout: 0
+    compteurTout: 0,
+    on: true,
+    start: 0,
+    time: 0,
+    partieEnd: false,
+    s: 0,
+    m: 0,
+    h: 0
     }
 
   hChange = (event) => {
@@ -102,66 +109,102 @@ class App extends React.Component {
       return o;
     });
 
+    var f = true;
     if(pE.includes(p) && !(this.state.paysFound.includes(this.state.paysEuropeen[pE.indexOf(p)]))){
       countries.push(this.state.paysEuropeen[pE.indexOf(p)]);
       countriesEu.push(this.state.paysEuropeen[pE.indexOf(p)]);
       this.setState({compteurEurope : cE+1});
-      this.setState({compteurTout : cT+1});
     } else if(pAf.includes(p) && !(this.state.paysFound.includes(this.state.paysAfrique[pAf.indexOf(p)]))){
       countries.push(this.state.paysAfrique[pAf.indexOf(p)]);
       countriesAf.push(this.state.paysAfrique[pAf.indexOf(p)]);
       this.setState({compteurAfrique : cAf+1});
-      this.setState({compteurTout : cT+1});
     } else if(pAm.includes(p) && !(this.state.paysFound.includes(this.state.paysAmerique[pAm.indexOf(p)]))){
       countries.push(this.state.paysAmerique[pAm.indexOf(p)]);
       countriesAm.push(this.state.paysAmerique[pAm.indexOf(p)]);
       this.setState({compteurAmerique : cAm+1});
-      this.setState({compteurTout : cT+1});
     } else if(pAs.includes(p) && !(this.state.paysFound.includes(this.state.paysAsie[pAs.indexOf(p)]))){
       countries.push(this.state.paysAsie[pAs.indexOf(p)]);
       countriesAs.push(this.state.paysAsie[pAs.indexOf(p)]);
       this.setState({compteurAsie : cAs+1});
-      this.setState({compteurTout : cT+1});
     } else if(pO.includes(p) && !(this.state.paysFound.includes(this.state.paysOceanie[pO.indexOf(p)]))){
       countries.push(this.state.paysOceanie[pO.indexOf(p)]);
       countriesOc.push(this.state.paysOceanie[pO.indexOf(p)]);
-      this.setState({compteurOceanie : cO+1});
-      this.setState({compteurTout : cT+1});
+      this.setState({compteurOceanie : cO+1}); 
+    } else {
+      f = false;
     }
-    this.setState({paysFound : countries});
-    this.setState({paysFoundAf : countriesAf});
-    this.setState({paysFoundAs : countriesAs});
-    this.setState({paysFoundAm : countriesAm});
-    this.setState({paysFoundEu : countriesEu});
-    this.setState({paysFoundOc : countriesOc});
+
+    if(f){
+      this.setState({compteurTout : cT+1});
+      this.setState({newPays : ''});
+    }
+    
+    this.setState({paysFound : countries.sort()});
+    this.setState({paysFoundAf : countriesAf.sort()});
+    this.setState({paysFoundAs : countriesAs.sort()});
+    this.setState({paysFoundAm : countriesAm.sort()});
+    this.setState({paysFoundEu : countriesEu.sort()});
+    this.setState({paysFoundOc : countriesOc.sort()});
+  }
+
+  startTimer = () => {
+    this.setState({on:true,time:this.state.time,start:Date.now()-this.state.time});
+    this.timer = setInterval(() => {
+        this.setState({time:Date.now()-this.state.start})
+    },10);
   }
 
   render(){
-    return(
-      <div>
-        <div class="centerdiv">
-          <h1>Countries Game</h1>
-          <form onSubmit={this.addCountry}>
-            <input value={this.state.newPays} onChange={this.hChange} type="text" placeholder="Entrer un pays"/>
-            <button>Confirmer</button>
-          </form>
+    if(this.state.compteurTout===this.state.paysAfrique.length+this.state.paysAmerique.length+this.state.paysAsie.length+this.state.paysEuropeen.length+this.state.paysOceanie.length && this.state.on){
+      let sf = ("0" + (Math.floor(this.state.time / 1000) % 60)).slice(-2);
+      let mf = ("0" + (Math.floor(this.state.time / 60000) % 60)).slice(-2);
+      let hf = ("0" + Math.floor(this.state.time / 3600000)).slice(-2);
+      this.setState({ on: false ,partieEnd: true,s: sf,m: mf,h: hf, time: 0,start: 0});
+      clearInterval(this.timer);
+      this.startTimer = null;
+    } 
+  
+    if(this.state.on){
+      let s = ("0" + (Math.floor(this.state.time / 1000) % 60)).slice(-2);
+      let m = ("0" + (Math.floor(this.state.time / 60000) % 60)).slice(-2);
+      let h = ("0" + Math.floor(this.state.time / 3600000)).slice(-2);
+  
+      return(
+        <div>
+          <div class="centerdiv">
+            <h1>Countries Game</h1>
+            <form onSubmit={this.addCountry}>
+              <input value={this.state.newPays} onChange={this.hChange} type="text" placeholder="Entrer un pays"/>
+              <button onClick={this.startTimer}>Confirmer</button>
+            </form>
+            <div class="chrono">
+              {h} : {m} : {s}
+            </div>
+              
+          </div>
+          <div class="grid-container">
+            <div class="grid-item-one"><p>Pays en Afrique : {this.state.compteurAfrique}/{this.state.paysAfrique.length}</p></div>
+            <div class="grid-item-two"><p>Pays en Amérique : {this.state.compteurAmerique}/{this.state.paysAmerique.length}</p></div>
+            <div class="grid-item-three"><p>Pays en Asie : {this.state.compteurAsie}/{this.state.paysAsie.length}</p></div>
+            <div class="grid-item-four"><p>Pays en Europe : {this.state.compteurEurope}/{this.state.paysEuropeen.length}</p></div>
+            <div class="grid-item-five"><p>Pays en Océanie : {this.state.compteurOceanie}/{this.state.paysOceanie.length}</p></div>
+            <div class="grid-item-six"><p>Total : {this.state.compteurTout}/{this.state.paysAfrique.length+this.state.paysAmerique.length+this.state.paysAsie.length+this.state.paysEuropeen.length+this.state.paysOceanie.length}</p></div>
+            <div class="grid-item-seven"><ul>{this.state.paysFoundAf.map(m => (<li>{m}</li>))}</ul></div>
+            <div class="grid-item-eight"><ul>{this.state.paysFoundAm.map(m => (<li>{m}</li>))}</ul></div>
+            <div class="grid-item-nine"><ul>{this.state.paysFoundAs.map(m => (<li>{m}</li>))}</ul></div>
+            <div class="grid-item-ten"><ul>{this.state.paysFoundEu.map(m => (<li>{m}</li>))}</ul></div>
+            <div class="grid-item-eleven"><ul>{this.state.paysFoundOc.map(m => (<li>{m}</li>))}</ul></div>
+            <div class="grid-item-twelve"><ul>{this.state.paysFound.map(m => (<li>{m}</li>))}</ul></div>
+          </div> 
         </div>
-        <div class="grid-container">
-          <div class="grid-item-one"><p>Pays en Afrique : {this.state.compteurAfrique}/{this.state.paysAfrique.length}</p></div>
-          <div class="grid-item-two"><p>Pays en Amérique : {this.state.compteurAmerique}/{this.state.paysAmerique.length}</p></div>
-          <div class="grid-item-three"><p>Pays en Asie : {this.state.compteurAsie}/{this.state.paysAsie.length}</p></div>
-          <div class="grid-item-four"><p>Pays en Europe : {this.state.compteurEurope}/{this.state.paysEuropeen.length}</p></div>
-          <div class="grid-item-five"><p>Pays en Océanie : {this.state.compteurOceanie}/{this.state.paysOceanie.length}</p></div>
-          <div class="grid-item-six"><p>Total : {this.state.compteurTout}/{this.state.paysAfrique.length+this.state.paysAmerique.length+this.state.paysAsie.length+this.state.paysEuropeen.length+this.state.paysOceanie.length}</p></div>
-          <div class="grid-item-seven"><ul>{this.state.paysFoundAf.map(m => (<li>{m}</li>))}</ul></div>
-          <div class="grid-item-eight"><ul>{this.state.paysFoundAm.map(m => (<li>{m}</li>))}</ul></div>
-          <div class="grid-item-nine"><ul>{this.state.paysFoundAs.map(m => (<li>{m}</li>))}</ul></div>
-          <div class="grid-item-ten"><ul>{this.state.paysFoundEu.map(m => (<li>{m}</li>))}</ul></div>
-          <div class="grid-item-eleven"><ul>{this.state.paysFoundOc.map(m => (<li>{m}</li>))}</ul></div>
-          <div class="grid-item-twelve"><ul>{this.state.paysFound.map(m => (<li>{m}</li>))}</ul></div>
-        </div> 
-      </div>
-    );
+      );
+    } else {
+      return(
+        <div>
+          <h1>Félicitations vous avez trouvé tous les pays en {this.state.h} : {this.state.m} : {this.state.s}</h1>
+        </div>
+      )
+    }
   }
 }
 
