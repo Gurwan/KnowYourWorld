@@ -11,3 +11,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.grid-container {
+  padding-inline-start: 20px;
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: minmax(1px, auto);
+}
+
+.grid-item-one {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.grid-item-two {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.grid-item-three {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.grid-item-four {
+  grid-column: 4;
+  grid-row: 1;
+}
+
+.grid-item-five {
+  grid-column: 5;
+  grid-row: 1;
+}
+
+.grid-item-six {
+  grid-column: 6;
+  grid-row: 1;
+}
+
+.grid-item-seven {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.grid-item-eight {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.grid-item-nine {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.grid-item-ten {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+.grid-item-eleven {
+  grid-column: 5;
+  grid-row: 2;
+}
+
+.grid-item-twelve {
+  grid-column: 6;
+  grid-row: 2;
+}
+
+.centerdiv {
+  width: 300px;
+  margin: auto;
+  padding-bottom: 20px;
+}
