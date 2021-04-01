@@ -5,6 +5,7 @@ import {Navbar,Nav} from "react-bootstrap";
 import Countries from "./Countries";
 import FootballClub from "./Football";
 import Home from "./Home";
+import Register from "./Register";
 
 function App() {
   return (
@@ -14,12 +15,14 @@ function App() {
             <Navbar.Brand href="/home">Know Your World</Navbar.Brand>
             <Nav className="mr-auto">
             <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/register">Register</Nav.Link>
             <Nav.Link href="/countries">Countries</Nav.Link>
             <Nav.Link href="/football">Football Club</Nav.Link>
             </Nav>
             </Navbar>
             <Switch>
                 <Route path="/home" component={Home}/>
+                <Route path="/register" component={Register}/>
                 <Route path="/countries" component={Countries}/>
                 <Route path="/football" component={FootballClub}/>
             </Switch>
