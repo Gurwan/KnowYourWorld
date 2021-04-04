@@ -49,13 +49,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'KnowYourWorld.urls'
+ROOT_URLCONF = 'back.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'react/build')
+            os.path.join(BASE_DIR, 'front/build')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'KnowYourWorld.wsgi.application'
+WSGI_APPLICATION = 'back.wsgi.application'
 
 
 # Database
@@ -122,5 +122,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'react/build/static'),
+    os.path.join(BASE_DIR, 'front/build/static'),
 ]
